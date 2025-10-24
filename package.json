@@ -1,0 +1,108 @@
+{
+  "name": "unah-shop",
+  "version": "1.0.0",
+  "description": "E-Commerce educativo para ilustrar conceptos de programación web moderna",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "concurrently \"npm run dev:customers\" \"npm run dev:products\" \"npm run dev:cart\" \"npm run dev:orders\"",
+    "dev:customers": "cd backend/customers-service && npm run dev",
+    "dev:products": "cd backend/products-service && npm run dev",
+    "dev:cart": "cd backend/cart-service && npm run dev",
+    "dev:orders": "cd backend/orders-service && npm run dev",
+    "install:all": "npm install && npm run install:frontend && npm run install:backend",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "npm run install:customers && npm run install:products && npm run install:cart && npm run install:orders",
+    "install:customers": "cd backend/customers-service && npm install",
+    "install:products": "cd backend/products-service && npm install",
+    "install:cart": "cd backend/cart-service && npm install",
+    "install:orders": "cd backend/orders-service && npm install",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "echo 'Building all microservices...' && npm run build:customers && npm run build:products && npm run build:cart && npm run build:orders",
+    "build:customers": "cd backend/customers-service && npm run build",
+    "build:products": "cd backend/products-service && npm run build",
+    "build:cart": "cd backend/cart-service && npm run build",
+    "build:orders": "cd backend/orders-service && npm run build",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "npm run test:customers && npm run test:products && npm run test:cart && npm run test:orders",
+    "test:customers": "cd backend/customers-service && npm run test",
+    "test:products": "cd backend/products-service && npm run test",
+    "test:cart": "cd backend/cart-service && npm run test",
+    "test:orders": "cd backend/orders-service && npm run test",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "npm run lint:customers && npm run lint:products && npm run lint:cart && npm run lint:orders",
+    "lint:customers": "cd backend/customers-service && npm run lint",
+    "lint:products": "cd backend/products-service && npm run lint",
+    "lint:cart": "cd backend/cart-service && npm run lint",
+    "lint:orders": "cd backend/orders-service && npm run lint",
+    "clean": "rimraf node_modules frontend/node_modules backend/*/node_modules",
+    "setup": "npm run install:all && npm run setup:env",
+    "setup:env": "echo 'Configurando variables de entorno...' && node scripts/setup-env.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "educativo",
+    "javascript",
+    "react",
+    "nextjs",
+    "nodejs",
+    "microservicios",
+    "spa",
+    "mpa",
+    "programacion-funcional",
+    "oop"
+  ],
+  "author": "UNAH - Proyecto Educativo",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "rimraf": "^5.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "workspaces": [
+    "frontend",
+    "backend/customers-service",
+    "backend/products-service",
+    "backend/cart-service",
+    "backend/orders-service"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tu-usuario/unah-shop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tu-usuario/unah-shop/issues"
+  },
+  "homepage": "https://github.com/tu-usuario/unah-shop#readme",
+  "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/server": "^11.11.0",
+    "tslib": "^2.8.1"
+  },
+  "packageManager": "yarn@4.9.4+sha512.7b1cb0b62abba6a537b3a2ce00811a843bea02bcf53138581a6ae5b1bf563f734872bd47de49ce32a9ca9dcaff995aa789577ffb16811da7c603dcf69e73750b"
+}
